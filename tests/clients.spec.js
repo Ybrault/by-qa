@@ -105,3 +105,31 @@ test("L'Équipe, Altice Media, Kosc Telecom et Thomas Cook s'affichent avec leur
     await expect(page.locator(`#carousel img[alt="L'Équipe"]`), `${path} carrousel`).toHaveCount(1);
   }
 });
+
+const LINKEDIN_EXP = 'https://www.linkedin.com/in/ybrault/details/experience/';
+
+test('chaque logo renvoie vers les expériences LinkedIn dans un nouvel onglet', async ({ page }) => {
+  for (const path of ['/', '/en/']) {
+    await page.goto(path);
+    const rows = await page.$$eval('#clients img', (imgs) =>
+      imgs.map((i) => {
+        const a = i.closest('a');
+        return { src: i.getAttribute('src'), href: a?.href, target: a?.target, rel: a?.rel, hiddenCopy: !!i.closest('[aria-hidden="true"]'), tabindex: a?.getAttribute('tabindex') };
+      }),
+    );
+    expect(rows.length).toBeGreaterThanOrEqual(26);
+    for (const r of rows) {
+      expect(r.href, `${path} ${r.src}`).toBe(LINKEDIN_EXP);
+      expect(r.target).toBe('_blank');
+      expect(r.rel).toContain('noopener');
+      if (r.hiddenCopy) expect(r.tabindex, `${path} copie du carrousel ${r.src}`).toBe('-1');
+    }
+  }
+});
+
+test('plus aucun nom de client en texte seul dans la grille, sauf la mention Purse', async ({ page }) => {
+  await page.goto('/');
+  const textOnly = await page.$$eval('#clients-grid li', (lis) =>
+    lis.filter((li) => !li.querySelector('img')).map((li) => li.textContent.trim()));
+  expect(textOnly).toEqual([]);
+});

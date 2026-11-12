@@ -186,3 +186,8 @@ h3 { font-size: 1.05rem; }
 
 .lang-link { color: var(--fg); text-decoration: none; border: 1px solid var(--field-border); border-radius: 6px; padding: .35rem .7rem; font-size: .875rem; font-weight: 600; }
 .lang-link:hover { border-color: var(--accent); }
+
+/* Logos cliquables vers les expériences LinkedIn */
+.logo-link { display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; transition: transform .15s ease, box-shadow .15s ease; }
+.logo-link:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0, 0, 0, .35); }
+@media (prefers-reduced-motion: reduce) { .logo-link { transition: none; } .logo-link:hover { transform: none; } }
