@@ -38,7 +38,7 @@ test('GRTgaz s\'affiche avec son logo', async ({ page }) => {
 
 test('ReachFive affiche le logo Purse et la mention acquis par Purse', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#clients-grid img[alt="ReachFive (acquis par Purse)"]')).toBeVisible();
+  await expect(page.locator('#clients-grid img[alt="ReachFive (acquis par Purse)"]:visible')).toBeVisible();
   await expect(page.locator('#clients-grid')).toContainText('ReachFive, acquis par Purse');
 });
 
@@ -49,17 +49,9 @@ test('le carrousel se met en pause au survol', async ({ page }) => {
   expect(await playState(page)).toBe('paused');
 });
 
-test('le bouton pause arrête le carrousel', async ({ page }) => {
-  await page.goto('/');
-  await page.click('#carousel-pause');
-  await expect(page.locator('#carousel-pause')).toHaveAttribute('aria-pressed', 'true');
-  await page.mouse.move(0, 0);
-  expect(await playState(page)).toBe('paused');
-});
-
 test('le carrousel se met en pause quand il reçoit le focus clavier', async ({ page }) => {
   await page.goto('/');
-  await page.focus('#carousel-pause');
+  await page.focus('#carousel a');
   expect(await playState(page)).toBe('paused');
 });
 
@@ -98,7 +90,7 @@ test("L'Équipe, Altice Media, Kosc Telecom et Thomas Cook s'affichent avec leur
     await page.goto(path);
     await page.waitForLoadState('load');
     for (const alt of ["L'Équipe", 'Altice Media', 'Kosc Telecom', 'Thomas Cook']) {
-      const img = page.locator(`#clients-grid img[alt="${alt}"]`);
+      const img = page.locator(`#clients-grid img[alt="${alt}"]:visible`);
       await expect(img, `${path} ${alt}`).toHaveCount(1);
       expect(await img.evaluate((i) => i.complete && i.naturalWidth > 0), `${path} ${alt} chargé`).toBe(true);
     }
@@ -132,4 +124,44 @@ test('plus aucun nom de client en texte seul dans la grille, sauf la mention Pur
   const textOnly = await page.$$eval('#clients-grid li', (lis) =>
     lis.filter((li) => !li.querySelector('img')).map((li) => li.textContent.trim()));
   expect(textOnly).toEqual([]);
+});
+
+test('les logos ont un fond transparent, sans pastille', async ({ page }) => {
+  for (const scheme of ['dark', 'light']) {
+    await page.emulateMedia({ colorScheme: scheme });
+    await page.goto('/');
+    const bad = await page.$$eval('#clients img', (imgs) =>
+      imgs.filter((i) => i.offsetParent !== null).filter((i) => {
+        const s = getComputedStyle(i);
+        return s.backgroundColor !== 'rgba(0, 0, 0, 0)' || parseFloat(s.paddingLeft) > 0 || parseFloat(s.borderTopLeftRadius) > 0;
+      }).map((i) => i.alt));
+    expect(bad, scheme).toEqual([]);
+  }
+});
+
+test('un logo sombre prend sa variante claire en thème sombre et reste normal en thème clair', async ({ page }) => {
+  await page.goto('/');
+  const src = (alt) => page.locator(`#clients-grid img[alt="${alt}"]:visible`).getAttribute('src');
+  await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
+  expect(await src('Accor'), 'dark').toContain('accor-dark.png');
+  expect(await src('Renault Digital'), 'dark').toContain('renault-digital-dark.png');
+  await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'light'));
+  expect(await src('Accor'), 'light').toMatch(/accor\.svg$/);
+  expect(await src('Renault Digital'), 'light').toMatch(/renault-digital\.svg$/);
+});
+
+test('sans choix de thème, la variante suit la préférence du système', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'light' });
+  await page.goto('/');
+  expect(await page.locator('#clients-grid img[alt="Accor"]:visible').getAttribute('src')).toMatch(/accor\.svg$/);
+  await page.emulateMedia({ colorScheme: 'dark' });
+  expect(await page.locator('#clients-grid img[alt="Accor"]:visible').getAttribute('src')).toContain('accor-dark.png');
+});
+
+test('le carrousel n\'a pas de bouton pause', async ({ page }) => {
+  for (const path of ['/', '/en/']) {
+    await page.goto(path);
+    await expect(page.locator('#carousel-pause'), path).toHaveCount(0);
+    await expect(page.locator('#carousel button'), path).toHaveCount(0);
+  }
 });

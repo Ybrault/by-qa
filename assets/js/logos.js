@@ -3,6 +3,7 @@
   if (!scope) return;
 
   function fallback(img) {
+    if (img.classList.contains('logo-theme-dark')) { img.remove(); return; }
     var name = document.createElement('span');
     name.className = 'logo-name';
     name.textContent = img.alt;

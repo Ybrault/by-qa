@@ -80,7 +80,7 @@ test('si contact.js ne se charge pas, le formulaire reste caché et LinkedIn est
 
 test("aucune adresse e-mail dans la page ni dans les scripts", async ({ request }) => {
   const emailPattern = /[\w.+-]+@[\w-]+\.\w+/;
-  for (const path of ['/', '/assets/js/theme.js', '/assets/js/carousel.js', '/assets/js/contact.js']) {
+  for (const path of ['/', '/assets/js/theme.js', '/assets/js/contact.js']) {
     const res = await request.get(path);
     expect(res.status(), path).toBe(200);
     expect(await res.text(), path).not.toMatch(emailPattern);

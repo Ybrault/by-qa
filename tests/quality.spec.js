@@ -55,14 +55,18 @@ for (const p of PAGES) {
     }
   });
 
-  test(`${p.path} permet d'atteindre langue, thème et pause du carrousel au clavier`, async ({ page }) => {
+  test(`${p.path} permet d'atteindre langue, thème et logos du carrousel au clavier`, async ({ page }) => {
     await page.goto(p.path);
     const seen = new Set();
+    let inCarousel = false;
     for (let i = 0; i < 40; i++) {
       await page.keyboard.press('Tab');
-      seen.add(await page.evaluate(() => document.activeElement.id));
+      const [id, inside] = await page.evaluate(() => [document.activeElement.id, !!document.activeElement.closest('#carousel')]);
+      seen.add(id);
+      inCarousel ||= inside;
     }
-    for (const id of ['lang-switch', 'theme-toggle', 'carousel-pause']) expect(seen.has(id), id).toBe(true);
+    for (const id of ['lang-switch', 'theme-toggle']) expect(seen.has(id), id).toBe(true);
+    expect(inCarousel, 'un logo du carrousel reçoit le focus').toBe(true);
   });
 
   test(`${p.path} donne un texte alternatif à toutes les images`, async ({ page }) => {

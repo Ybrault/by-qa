@@ -153,16 +153,15 @@ h3 { font-size: 1.05rem; }
 .carousel-track { display: flex; width: max-content; gap: 3rem; list-style: none; margin: 0; padding: 0 1.5rem; align-items: center; animation: carousel-scroll 40s linear infinite; }
 .carousel-track li { display: flex; align-items: center; color: var(--fg); font-weight: 600; white-space: nowrap; }
 .carousel-track img { height: 2rem; width: auto; max-width: 9rem; object-fit: contain; }
-.carousel:hover .carousel-track, .carousel:focus-within .carousel-track, .carousel.is-paused .carousel-track { animation-play-state: paused; }
+.carousel:hover .carousel-track, .carousel:focus-within .carousel-track { animation-play-state: paused; }
 @keyframes carousel-scroll { to { transform: translateX(-50%); } }
-.carousel-controls { margin-top: .75rem; padding-inline: 1.5rem; }
 @media (prefers-reduced-motion: reduce) {
   .carousel-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
   .carousel-track [aria-hidden="true"] { display: none; }
 }
 
 /* Logos toujours en couleurs d'origine, sur pastille claire (lisible en thème sombre comme clair)  */
-.logos img.logo-chip, .carousel-track img.logo-chip { filter: none; background: #fff; padding: .3rem .6rem; border-radius: 6px; height: 2.4rem; }
+.logos img, .carousel-track img { height: 2.4rem; width: auto; max-width: 9rem; object-fit: contain; }
 .logos img.logo-tall { height: 3.6rem; }
 
 /* Contact */
@@ -182,7 +181,6 @@ h3 { font-size: 1.05rem; }
 .form-ready .no-js-only { display: none; }
 .privacy { font-size: .8rem; color: var(--muted); margin: 0; }
 .logo-name { font-weight: 600; font-size: .95rem; line-height: 1.3; overflow-wrap: anywhere; }
-.logo-chip { color: #1f2328; }
 
 .lang-link { color: var(--fg); text-decoration: none; border: 1px solid var(--field-border); border-radius: 6px; padding: .35rem .7rem; font-size: .875rem; font-weight: 600; }
 .lang-link:hover { border-color: var(--accent); }
@@ -191,3 +189,12 @@ h3 { font-size: 1.05rem; }
 .logo-link { display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; transition: transform .15s ease, box-shadow .15s ease; }
 .logo-link:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0, 0, 0, .35); }
 @media (prefers-reduced-motion: reduce) { .logo-link { transition: none; } .logo-link:hover { transform: none; } }
+
+/* Variante de logo selon le thème : sombre par défaut, claire si le thème clair est actif */
+.logo-theme-light { display: none; }
+:root[data-theme="light"] .logo-theme-light { display: block; }
+:root[data-theme="light"] .logo-theme-dark { display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .logo-theme-light { display: block; }
+  :root:not([data-theme]) .logo-theme-dark { display: none; }
+}

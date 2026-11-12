@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.use({ colorScheme: 'dark' });
 
-const SHARED =['#clients', '#expertise', '#contact', '#clients-grid', '#carousel', '#carousel-pause', '#contact-form', '#contact-status', '#theme-toggle', '#lang-switch'];
+const SHARED =['#clients', '#expertise', '#contact', '#clients-grid', '#carousel', '#contact-form', '#contact-status', '#theme-toggle', '#lang-switch'];
 
 test('la page française déclare lang fr et la page anglaise lang en', async ({ page }) => {
   await page.goto('/');
@@ -36,7 +36,7 @@ test('la page anglaise affiche le bon titre et le bon bouton', async ({ page }) 
   await expect(page.locator('h1')).toHaveText('Craftsman of Quality.');
   await expect(page.locator('a.cta').first()).toHaveText("Let's discuss your project");
   await expect(page.locator('#clients-grid')).toContainText('ReachFive, acquired by Purse');
-  await expect(page.locator('#clients-grid img[alt="ReachFive (acquired by Purse)"]')).toBeVisible();
+  await expect(page.locator('#clients-grid img[alt="ReachFive (acquired by Purse)"]:visible')).toBeVisible();
 });
 
 test('les ressources de la page anglaise se chargent', async ({ page }) => {
@@ -76,14 +76,6 @@ test('la page anglaise affiche ses messages en anglais', async ({ page }) => {
   await page.fill('#contact-form [name=message]', 'Hello');
   await page.click('#contact-form button[type=submit]');
   await expect(page.locator('#contact-status')).toContainText('could not be sent');
-  await page.click('#carousel-pause');
-  await expect(page.locator('#carousel-pause')).toHaveText('Play');
-});
-
-test('les textes français restent en français', async ({ page }) => {
-  await page.goto('/');
-  await page.click('#carousel-pause');
-  await expect(page.locator('#carousel-pause')).toHaveText('Lecture');
 });
 
 test('chaque page informe que le formulaire passe par Web3Forms', async ({ page }) => {
