@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BY-QA | Yoann Brault, expert QA et automatisation de tests</title>
+  <meta name="description" content="Yoann Brault, Senior QA Engineer et expert en automatisation de tests. 20 ans de QA web et mobile, 10 ans d'encadrement d'équipes.">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark' || stored === 'light') root.setAttribute('data-theme', stored);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/theme.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav" aria-label="Navigation principale">
+      <a class="brand" href="/">by-qa<span class="cursor">_</span></a>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-pressed="false">Mode clair</button>
+    </nav>
+  </header>
+  <main id="main" class="container">
+    <h1>Craftsman of Quality.</h1>
+  </main>
+</body>
+</html>

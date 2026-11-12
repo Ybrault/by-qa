@@ -1,0 +1,12 @@
+{
+  "name": "by-qa",
+  "private": true,
+  "type": "module",
+  "description": "Site vitrine by-qa.com (outils de test uniquement, le site est statique)",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0"
+  }
+}
