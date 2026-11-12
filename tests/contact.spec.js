@@ -72,7 +72,7 @@ test.describe('sans JavaScript', () => {
 });
 
 test('si contact.js ne se charge pas, le formulaire reste caché et LinkedIn est proposé', async ({ page }) => {
-  await page.route('**/assets/js/contact.js', (route) => route.abort());
+  await page.route('**/assets/js/contact.js*', (route) => route.abort());
   await page.goto('/');
   await expect(page.locator('#contact-form')).toBeHidden();
   await expect(page.locator('#contact .notice')).toBeVisible();

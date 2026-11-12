@@ -113,3 +113,12 @@ test('favicon, og.png, robots.txt et sitemap.xml répondent 200', async ({ reque
   const sitemap = await (await request.get('/sitemap.xml')).text();
   expect(sitemap).toContain('https://by-qa.com/en/');
 });
+
+test('les feuilles de style et scripts portent un numéro de version contre les caches périmés', async ({ page }) => {
+  for (const path of ['/', '/en/']) {
+    await page.goto(path);
+    const refs = await page.$$eval('link[rel="stylesheet"], script[src]', (els) => els.map((e) => e.getAttribute('href') || e.getAttribute('src')).filter((u) => u.includes('assets/')));
+    expect(refs.length, path).toBeGreaterThanOrEqual(4);
+    for (const r of refs) expect(r, `${path} ${r}`).toMatch(/\?v=\d+$/);
+  }
+});
