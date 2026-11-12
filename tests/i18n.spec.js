@@ -26,7 +26,7 @@ test('les deux pages ont les mêmes sections', async ({ page }) => {
     await page.goto(path);
     for (const sel of SHARED) await expect(page.locator(sel), `${path} ${sel}`).toHaveCount(1);
     counts.push(await page.locator('main > section').count());
-    await expect(page.locator('#clients-grid li')).toHaveCount(18);
+    await expect(page.locator('#clients-grid li')).toHaveCount(20);
   }
   expect(counts[0]).toBe(counts[1]);
 });

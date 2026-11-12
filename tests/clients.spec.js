@@ -3,15 +3,15 @@ import { test, expect } from '@playwright/test';
 const playState = (page) =>
   page.locator('.carousel-track').evaluate((el) => getComputedStyle(el).animationPlayState);
 
-test('la grille contient 18 clients', async ({ page }) => {
+test('la grille contient 20 clients', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#clients-grid li')).toHaveCount(18);
+  await expect(page.locator('#clients-grid li')).toHaveCount(20);
 });
 
 test('chaque client a un nom accessible', async ({ page }) => {
   await page.goto('/');
   const items = await page.locator('#clients-grid li').all();
-  expect(items.length).toBe(18);
+  expect(items.length).toBe(20);
   for (const li of items) {
     const img = li.locator('img');
     const alt = (await img.count()) ? await img.first().getAttribute('alt') : null;
@@ -71,7 +71,7 @@ test.describe('sans JavaScript', () => {
   test('la grille reste visible sans JavaScript', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('#clients-grid li').first()).toBeVisible();
-    await expect(page.locator('#clients-grid li')).toHaveCount(18);
+    await expect(page.locator('#clients-grid li')).toHaveCount(20);
   });
 });
 
@@ -164,4 +164,21 @@ test('le carrousel n\'a pas de bouton pause', async ({ page }) => {
     await expect(page.locator('#carousel-pause'), path).toHaveCount(0);
     await expect(page.locator('#carousel button'), path).toHaveCount(0);
   }
+});
+
+test('BlaBlaCar et Garmin figurent dans la grille et le carrousel, avec leur logo', async ({ page }) => {
+  for (const path of ['/', '/en/']) {
+    await page.goto(path);
+    await page.waitForLoadState('load');
+    for (const alt of ['BlaBlaCar', 'Garmin']) {
+      for (const zone of ['#clients-grid', '#carousel']) {
+        const img = page.locator(`${zone} img[alt="${alt}"]:visible`);
+        await expect(img, `${path} ${zone} ${alt}`).toHaveCount(1);
+        expect(await img.evaluate((i) => i.complete && i.naturalWidth > 0), `${path} ${zone} ${alt} chargé`).toBe(true);
+      }
+    }
+  }
+  await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
+  expect(await page.locator('#clients-grid img[alt="BlaBlaCar"]:visible').getAttribute('src')).toContain('blablacar-dark.svg');
+  expect(await page.locator('#clients-grid img[alt="Garmin"]:visible').getAttribute('src')).toContain('garmin-dark.svg');
 });

@@ -12,7 +12,8 @@
   }
 
   function reflect() {
-    button.setAttribute('aria-pressed', String(currentTheme() === 'light'));
+    // le bouton annonce le thème vers lequel il bascule
+    button.textContent = currentTheme() === 'light' ? button.getAttribute('data-label-dark') : button.getAttribute('data-label-light');
   }
 
   button.addEventListener('click', function () {
