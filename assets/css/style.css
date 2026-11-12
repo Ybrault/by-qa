@@ -139,7 +139,8 @@ h3 { font-size: 1.05rem; }
 
 /* Références clients */
 
-.logos { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: .75rem; }
+.logos { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
+@media (max-width: 560px) { .logos { grid-template-columns: repeat(2, 1fr); } .logos li { padding: .75rem .5rem; } }
 .logos li {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4rem;
   min-height: 4.5rem; padding: .75rem; text-align: center;
@@ -162,6 +163,7 @@ h3 { font-size: 1.05rem; }
 
 /* Logos toujours en couleurs d'origine, sur pastille claire (lisible en thème sombre comme clair)  */
 .logos img, .carousel-track img { height: 2.4rem; width: auto; max-width: 9rem; object-fit: contain; }
+.logos img { max-width: 100%; }
 .logos img.logo-tall { height: 3.6rem; }
 
 /* Contact */

@@ -182,3 +182,18 @@ test('BlaBlaCar et Garmin figurent dans la grille et le carrousel, avec leur log
   expect(await page.locator('#clients-grid img[alt="BlaBlaCar"]:visible').getAttribute('src')).toContain('blablacar-dark.svg');
   expect(await page.locator('#clients-grid img[alt="Garmin"]:visible').getAttribute('src')).toContain('garmin-dark.svg');
 });
+
+for (const [width, cols] of [[1280, 4], [768, 4], [320, 2]]) {
+  test(`la grille des références fait ${cols} colonnes à ${width} px${cols === 4 ? ' sur 5 lignes' : ''}`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    const { lefts, tops, overflow } = await page.$$eval('#clients-grid li', (lis) => ({
+      lefts: [...new Set(lis.map((l) => Math.round(l.getBoundingClientRect().left)))].length,
+      tops: [...new Set(lis.map((l) => Math.round(l.getBoundingClientRect().top)))].length,
+      overflow: document.documentElement.scrollWidth - window.innerWidth,
+    }));
+    expect(lefts).toBe(cols);
+    expect(tops).toBe(20 / cols);
+    expect(overflow).toBeLessThanOrEqual(0);
+  });
+}
