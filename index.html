@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/theme.js" defer></script>
   <script src="assets/js/carousel.js" defer></script>
+  <script src="assets/js/contact.js" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -146,6 +147,28 @@
       <h2 id="parcours-titre">Parcours</h2>
       <p>Mon parcours a commencé dans les télécoms et le mobile : Android, iOS, Symbian, Windows Mobile et systèmes temps réel, avec les réseaux GSM, UMTS, TCP/IP, Wi-Fi et Bluetooth. J'y ai appris à tester des produits où le terrain ne pardonne pas.</p>
       <p>Freelance avec BY-QA depuis avril 2016, j'ai exercé comme QA Lead, QA Manager, ingénieur en automatisation et coach qualité, en web comme en mobile, en environnement Agile. J'ai encadré des équipes de 2 à 5 personnes et formé les équipes aux outils et à l'état d'esprit qualité.</p>
+    </section>
+    <section id="contact" class="container section" aria-labelledby="contact-titre">
+      <h2 id="contact-titre">Contact</h2>
+      <p>Un projet, une question ? Écrivez-moi avec ce formulaire, ou retrouvez-moi sur <a href="https://www.linkedin.com/in/ybrault/" rel="noopener">LinkedIn</a>.</p>
+      <p class="notice no-js-only">Le formulaire nécessite JavaScript. Écrivez-moi sur <a href="https://www.linkedin.com/in/ybrault/" rel="noopener">LinkedIn</a>.</p>
+      <form id="contact-form" class="form" novalidate>
+        <input type="hidden" name="access_key" value="WEB3FORMS_PUBLIC_KEY">
+        <input type="hidden" name="subject" value="Contact depuis by-qa.com">
+        <input type="hidden" name="from_name" value="by-qa.com">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label>Nom
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>E-mail
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>Message
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit" class="cta">Envoyer</button>
+        <p id="contact-status" class="status" role="status" aria-live="polite"></p>
+      </form>
     </section>
   </main>
 </body>

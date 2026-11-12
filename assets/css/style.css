@@ -166,3 +166,18 @@ h3 { font-size: 1.05rem; }
 
 /* Logos dont le fond blanc ou les détails blancs disparaissent une fois éclaircis : affichés en couleur sur pastille claire */
 .logos img.logo-chip, .carousel-track img.logo-chip { filter: none; background: #fff; padding: .3rem .6rem; border-radius: 6px; height: 2.4rem; }
+
+/* Contact */
+.form { display: grid; gap: 1rem; max-width: 36rem; margin-top: 1.5rem; }
+.form label { display: grid; gap: .35rem; font-size: .9rem; color: var(--muted); }
+.form input[type=text], .form input[type=email], .form textarea {
+  background: var(--card); color: var(--fg); border: 1px solid var(--border);
+  border-radius: 6px; padding: .65rem .8rem; font: inherit;
+}
+.form .cta { justify-self: start; border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+.form .cta:disabled { opacity: .6; cursor: progress; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.status { min-height: 1.5em; margin: 0; color: var(--fg); }
+.notice { color: var(--fg); }
+.js .no-js-only { display: none; }
+html:not(.js) #contact-form { display: none; }
