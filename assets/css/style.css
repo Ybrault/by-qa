@@ -163,6 +163,7 @@ h3 { font-size: 1.05rem; }
 
 /* Logos toujours en couleurs d'origine, sur pastille claire (lisible en thème sombre comme clair)  */
 .logos img.logo-chip, .carousel-track img.logo-chip { filter: none; background: #fff; padding: .3rem .6rem; border-radius: 6px; height: 2.4rem; }
+.logos img.logo-tall { height: 3.6rem; }
 
 /* Contact */
 .form { display: grid; gap: 1rem; max-width: 36rem; margin-top: 1.5rem; }

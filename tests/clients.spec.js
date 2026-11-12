@@ -92,3 +92,16 @@ test('si les logos ne chargent pas, chaque nom reste lisible dans la grille', as
   }
   await expect(page.locator('#clients-grid img')).toHaveCount(0);
 });
+
+test("L'Équipe, Altice Media, Kosc Telecom et Thomas Cook s'affichent avec leur logo", async ({ page }) => {
+  for (const path of ['/', '/en/']) {
+    await page.goto(path);
+    await page.waitForLoadState('load');
+    for (const alt of ["L'Équipe", 'Altice Media', 'Kosc Telecom', 'Thomas Cook']) {
+      const img = page.locator(`#clients-grid img[alt="${alt}"]`);
+      await expect(img, `${path} ${alt}`).toHaveCount(1);
+      expect(await img.evaluate((i) => i.complete && i.naturalWidth > 0), `${path} ${alt} chargé`).toBe(true);
+    }
+    await expect(page.locator(`#carousel img[alt="L'Équipe"]`), `${path} carrousel`).toHaveCount(1);
+  }
+});
