@@ -55,6 +55,16 @@ for (const p of PAGES) {
     }
   });
 
+  test(`${p.path} permet d'atteindre langue, thème et pause du carrousel au clavier`, async ({ page }) => {
+    await page.goto(p.path);
+    const seen = new Set();
+    for (let i = 0; i < 40; i++) {
+      await page.keyboard.press('Tab');
+      seen.add(await page.evaluate(() => document.activeElement.id));
+    }
+    for (const id of ['lang-switch', 'theme-toggle', 'carousel-pause']) expect(seen.has(id), id).toBe(true);
+  });
+
   test(`${p.path} donne un texte alternatif à toutes les images`, async ({ page }) => {
     await page.goto(p.path);
     const missing = await page.$$eval('img', (imgs) => imgs.filter((i) => !i.hasAttribute('alt')).length);
@@ -70,13 +80,15 @@ for (const p of PAGES) {
       const v = await page.evaluate(() => {
         const s = getComputedStyle(document.documentElement);
         const g = (n) => s.getPropertyValue(n).trim();
-        return { bg: g('--bg'), fg: g('--fg'), muted: g('--muted'), card: g('--card'), accent: g('--accent'), ink: g('--accent-ink') };
+        return { bg: g('--bg'), fg: g('--fg'), muted: g('--muted'), card: g('--card'), accent: g('--accent'), ink: g('--accent-ink'), field: g('--field-border') };
       });
       expect(ratio(v.fg, v.bg), `${theme} fg/bg`).toBeGreaterThanOrEqual(4.5);
       expect(ratio(v.muted, v.bg), `${theme} muted/bg`).toBeGreaterThanOrEqual(4.5);
       expect(ratio(v.muted, v.card), `${theme} muted/card`).toBeGreaterThanOrEqual(4.5);
       expect(ratio(v.accent, v.bg), `${theme} accent/bg`).toBeGreaterThanOrEqual(4.5);
       expect(ratio(v.ink, v.accent), `${theme} bouton`).toBeGreaterThanOrEqual(4.5);
+      expect(ratio(v.field, v.bg), `${theme} bordure de champ/fond`).toBeGreaterThanOrEqual(3);
+      expect(ratio(v.field, v.card), `${theme} bordure de champ/carte`).toBeGreaterThanOrEqual(3);
     }
   });
 

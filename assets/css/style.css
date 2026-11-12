@@ -6,6 +6,7 @@
   --border: #30363d;
   --accent: #3fb950;
   --accent-ink: #04260f;
+  --field-border: #6e7681;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color-scheme: dark;
@@ -20,6 +21,7 @@
     --border: #d1d9e0;
     --accent: #1a7f37;
     --accent-ink: #ffffff;
+    --field-border: #818b98;
     color-scheme: light;
   }
 }
@@ -32,6 +34,7 @@
   --border: #d1d9e0;
   --accent: #1a7f37;
   --accent-ink: #ffffff;
+  --field-border: #818b98;
   color-scheme: light;
 }
 
@@ -70,7 +73,7 @@ a { color: var(--accent); }
   display: none;
   background: transparent;
   color: var(--fg);
-  border: 1px solid var(--border);
+  border: 1px solid var(--field-border);
   border-radius: 6px;
   padding: .35rem .7rem;
   font: inherit;
@@ -171,7 +174,7 @@ h3 { font-size: 1.05rem; }
 .form { display: grid; gap: 1rem; max-width: 36rem; margin-top: 1.5rem; }
 .form label { display: grid; gap: .35rem; font-size: .9rem; color: var(--muted); }
 .form input[type=text], .form input[type=email], .form textarea {
-  background: var(--card); color: var(--fg); border: 1px solid var(--border);
+  background: var(--card); color: var(--fg); border: 1px solid var(--field-border);
   border-radius: 6px; padding: .65rem .8rem; font: inherit;
 }
 .form .cta { justify-self: start; border: 0; cursor: pointer; font: inherit; font-weight: 600; }
@@ -179,8 +182,12 @@ h3 { font-size: 1.05rem; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .status { min-height: 1.5em; margin: 0; color: var(--fg); }
 .notice { color: var(--fg); }
-.js .no-js-only { display: none; }
-html:not(.js) #contact-form { display: none; }
+#contact-form { display: none; }
+.form-ready #contact-form { display: grid; }
+.form-ready .no-js-only { display: none; }
+.privacy { font-size: .8rem; color: var(--muted); margin: 0; }
+.logo-name { font-weight: 600; font-size: .95rem; line-height: 1.3; overflow-wrap: anywhere; }
+.logo-chip { color: #1f2328; }
 
-.lang-link { color: var(--fg); text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: .35rem .7rem; font-size: .875rem; font-weight: 600; }
+.lang-link { color: var(--fg); text-decoration: none; border: 1px solid var(--field-border); border-radius: 6px; padding: .35rem .7rem; font-size: .875rem; font-weight: 600; }
 .lang-link:hover { border-color: var(--accent); }

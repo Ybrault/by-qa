@@ -34,11 +34,12 @@
   <script src="../assets/js/theme.js" defer></script>
   <script src="../assets/js/carousel.js" defer></script>
   <script src="../assets/js/contact.js" defer></script>
+  <script src="../assets/js/logos.js" defer></script>
 </head>
 <body>
   <header class="site-header">
     <nav class="container nav" aria-label="Main navigation">
-      <a class="brand" href="/en/">by-qa<span class="cursor">_</span></a>
+      <a class="brand" href="./">by-qa<span class="cursor">_</span></a>
       <ul class="nav-links">
         <li><a href="#expertise">Expertise</a></li>
         <li><a href="#method">Method</a></li>
@@ -47,7 +48,7 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="nav-tools">
-        <a id="lang-switch" class="lang-link" href="/" hreflang="fr" lang="fr">FR</a>
+        <a id="lang-switch" class="lang-link" href="../" hreflang="fr" lang="fr">FR</a>
         <button id="theme-toggle" class="icon-btn" type="button" aria-pressed="false">Light mode</button>
       </div>
     </nav>
@@ -183,6 +184,7 @@
         <label>Message
           <textarea name="message" rows="5" required></textarea>
         </label>
+        <p class="privacy">The details you enter are used only to answer your request. They are sent through the Web3Forms service.</p>
         <button type="submit" class="cta">Send</button>
         <p id="contact-status" class="status" role="status" aria-live="polite"></p>
       </form>

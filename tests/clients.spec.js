@@ -82,3 +82,13 @@ test.describe('sans JavaScript', () => {
     await expect(page.locator('#clients-grid li')).toHaveCount(18);
   });
 });
+
+test('si les logos ne chargent pas, chaque nom reste lisible dans la grille', async ({ page }) => {
+  await page.route('**/assets/logos/**', (route) => route.abort());
+  await page.goto('/');
+  await page.waitForLoadState('load');
+  for (const name of ['BNP Paribas', 'Bouygues Telecom', 'GRTgaz (Natran)', 'Pierre & Vacances', 'France Médias Monde', 'ReachFive (acquis par Purse)']) {
+    await expect(page.locator('#clients-grid').getByText(name, { exact: true })).toBeVisible();
+  }
+  await expect(page.locator('#clients-grid img')).toHaveCount(0);
+});

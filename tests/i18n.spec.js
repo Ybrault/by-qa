@@ -13,10 +13,10 @@ test('la page française déclare lang fr et la page anglaise lang en', async ({
 
 test("chaque page pointe vers l'autre via #lang-switch", async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#lang-switch')).toHaveAttribute('href', '/en/');
+  await expect(page.locator('#lang-switch')).toHaveAttribute('href', 'en/');
   await expect(page.locator('#lang-switch')).toHaveAttribute('hreflang', 'en');
   await page.goto('/en/');
-  await expect(page.locator('#lang-switch')).toHaveAttribute('href', '/');
+  await expect(page.locator('#lang-switch')).toHaveAttribute('href', '../');
   await expect(page.locator('#lang-switch')).toHaveAttribute('hreflang', 'fr');
 });
 
@@ -84,4 +84,20 @@ test('les textes français restent en français', async ({ page }) => {
   await page.goto('/');
   await page.click('#carousel-pause');
   await expect(page.locator('#carousel-pause')).toHaveText('Lecture');
+});
+
+test('chaque page informe que le formulaire passe par Web3Forms', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#contact-form .privacy')).toContainText('Web3Forms');
+  await page.goto('/en/');
+  await expect(page.locator('#contact-form .privacy')).toContainText('Web3Forms');
+});
+
+test('les liens internes fonctionnent depuis un sous-dossier de publication', async ({ page }) => {
+  await page.goto('/');
+  const hrefs = await page.$$eval('a[href]', (as) => as.map((a) => a.getAttribute('href')));
+  expect(hrefs.filter((h) => h === '/' || h.startsWith('/en'))).toEqual([]);
+  await page.goto('/en/');
+  const hrefsEn = await page.$$eval('a[href]', (as) => as.map((a) => a.getAttribute('href')));
+  expect(hrefsEn.filter((h) => h === '/' || h.startsWith('/en'))).toEqual([]);
 });

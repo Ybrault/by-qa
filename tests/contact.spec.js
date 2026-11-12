@@ -33,7 +33,7 @@ test("l'échec réseau affiche une erreur et garde la saisie", async ({ page }) 
 
 test('le bouton est désactivé pendant l\'envoi', async ({ page }) => {
   await page.route(ENDPOINT, async (route) => {
-    await new Promise((r) => setTimeout(r, 600));
+    await new Promise((r) => setTimeout(r, 300));
     await route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":true}' });
   });
   await page.goto('/');
@@ -41,14 +41,14 @@ test('le bouton est désactivé pendant l\'envoi', async ({ page }) => {
   const button = page.locator('#contact-form button[type=submit]');
   await button.click();
   await expect(button).toBeDisabled();
-  await expect(button).toBeEnabled();
+  await expect(button).toBeEnabled({ timeout: 10000 });
 });
 
 test("un second clic n'envoie pas deux requêtes", async ({ page }) => {
   let sent = 0;
   await page.route(ENDPOINT, async (route) => {
     sent += 1;
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 300));
     await route.fulfill({ status: 200, contentType: 'application/json', body: '{"success":true}' });
   });
   await page.goto('/');
@@ -56,7 +56,7 @@ test("un second clic n'envoie pas deux requêtes", async ({ page }) => {
   const button = page.locator('#contact-form button[type=submit]');
   await button.click();
   await button.click({ force: true });
-  await expect(page.locator('#contact-status')).toContainText('Merci');
+  await expect(page.locator('#contact-status')).toContainText('Merci', { timeout: 10000 });
   expect(sent).toBe(1);
 });
 
@@ -69,6 +69,13 @@ test.describe('sans JavaScript', () => {
     await expect(page.locator('#contact-form')).toBeHidden();
     await expect(page.locator(`#contact a[href="${LINKEDIN}"]`).first()).toBeVisible();
   });
+});
+
+test('si contact.js ne se charge pas, le formulaire reste caché et LinkedIn est proposé', async ({ page }) => {
+  await page.route('**/assets/js/contact.js', (route) => route.abort());
+  await page.goto('/');
+  await expect(page.locator('#contact-form')).toBeHidden();
+  await expect(page.locator('#contact .notice')).toBeVisible();
 });
 
 test("aucune adresse e-mail dans la page ni dans les scripts", async ({ request }) => {

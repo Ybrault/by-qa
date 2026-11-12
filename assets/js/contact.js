@@ -21,6 +21,7 @@ async function submitContact(form) {
   var status = document.getElementById('contact-status');
   if (!form || !status) return;
   var button = form.querySelector('button[type=submit]');
+  document.documentElement.classList.add('form-ready');
   var sending = false;
 
   form.addEventListener('submit', async function (event) {
