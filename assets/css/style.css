@@ -138,11 +138,6 @@ h3 { font-size: 1.05rem; }
 }
 
 /* Références clients */
-:root { --logo-filter: brightness(0) invert(1); --logo-white-filter: none; }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) { --logo-filter: none; --logo-white-filter: brightness(0); }
-}
-:root[data-theme="light"] { --logo-filter: none; --logo-white-filter: brightness(0); }
 
 .logos { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: .75rem; }
 .logos li {
@@ -151,14 +146,13 @@ h3 { font-size: 1.05rem; }
   background: var(--card); border: 1px solid var(--border); border-radius: 8px;
   color: var(--fg); font-weight: 600; font-size: .95rem;
 }
-.logos img { height: 2rem; width: auto; max-width: 8.5rem; object-fit: contain; filter: var(--logo-filter); }
-.logos img.logo-white { filter: var(--logo-white-filter); }
+.logos img { height: 2rem; width: auto; max-width: 8.5rem; object-fit: contain; }
 .logos .note { font-size: .75rem; font-weight: 400; color: var(--muted); }
 
 .carousel { position: relative; overflow: hidden; margin-top: 1.5rem; border-block: 1px solid var(--border); padding-block: 1rem; }
 .carousel-track { display: flex; width: max-content; gap: 3rem; list-style: none; margin: 0; padding: 0 1.5rem; align-items: center; animation: carousel-scroll 40s linear infinite; }
 .carousel-track li { display: flex; align-items: center; color: var(--fg); font-weight: 600; white-space: nowrap; }
-.carousel-track img { height: 2rem; width: auto; max-width: 9rem; object-fit: contain; filter: var(--logo-filter); }
+.carousel-track img { height: 2rem; width: auto; max-width: 9rem; object-fit: contain; }
 .carousel:hover .carousel-track, .carousel:focus-within .carousel-track, .carousel.is-paused .carousel-track { animation-play-state: paused; }
 @keyframes carousel-scroll { to { transform: translateX(-50%); } }
 .carousel-controls { margin-top: .75rem; padding-inline: 1.5rem; }
@@ -167,7 +161,7 @@ h3 { font-size: 1.05rem; }
   .carousel-track [aria-hidden="true"] { display: none; }
 }
 
-/* Logos dont le fond blanc ou les détails blancs disparaissent une fois éclaircis : affichés en couleur sur pastille claire */
+/* Logos toujours en couleurs d'origine, sur pastille claire (lisible en thème sombre comme clair)  */
 .logos img.logo-chip, .carousel-track img.logo-chip { filter: none; background: #fff; padding: .3rem .6rem; border-radius: 6px; height: 2.4rem; }
 
 /* Contact */

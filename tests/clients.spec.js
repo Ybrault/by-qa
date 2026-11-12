@@ -31,9 +31,9 @@ test('aucun logo de la grille ni du carrousel n\'est cassé', async ({ page }) =
   expect(broken).toEqual([]);
 });
 
-test('GRTgaz mentionne Natran', async ({ page }) => {
+test('GRTgaz s\'affiche avec son logo', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#clients-grid img[alt="GRTgaz (Natran)"]')).toHaveCount(1);
+  await expect(page.locator('#clients-grid img[alt="GRTgaz"]')).toHaveCount(1);
 });
 
 test('ReachFive affiche le logo Purse et la mention acquis par Purse', async ({ page }) => {
@@ -87,7 +87,7 @@ test('si les logos ne chargent pas, chaque nom reste lisible dans la grille', as
   await page.route('**/assets/logos/**', (route) => route.abort());
   await page.goto('/');
   await page.waitForLoadState('load');
-  for (const name of ['BNP Paribas', 'Bouygues Telecom', 'GRTgaz (Natran)', 'Pierre & Vacances', 'France Médias Monde', 'ReachFive (acquis par Purse)']) {
+  for (const name of ['BNP Paribas', 'Bouygues Telecom', 'GRTgaz', 'Pierre & Vacances', 'France Médias Monde', 'ReachFive (acquis par Purse)']) {
     await expect(page.locator('#clients-grid').getByText(name, { exact: true })).toBeVisible();
   }
   await expect(page.locator('#clients-grid img')).toHaveCount(0);
