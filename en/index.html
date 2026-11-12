@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BY-QA | Yoann Brault, QA and test automation expert</title>
+  <meta name="description" content="Yoann Brault, Senior QA Engineer and test automation expert. 20 years in web and mobile QA, 10 years leading teams.">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark' || stored === 'light') root.setAttribute('data-theme', stored);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="alternate" hreflang="fr" href="https://by-qa.com/">
+  <link rel="alternate" hreflang="en" href="https://by-qa.com/en/">
+  <link rel="alternate" hreflang="x-default" href="https://by-qa.com/">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script src="../assets/js/theme.js" defer></script>
+  <script src="../assets/js/carousel.js" defer></script>
+  <script src="../assets/js/contact.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav" aria-label="Main navigation">
+      <a class="brand" href="/en/">by-qa<span class="cursor">_</span></a>
+      <ul class="nav-links">
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#method">Method</a></li>
+        <li><a href="#clients">References</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-tools">
+        <a id="lang-switch" class="lang-link" href="/" hreflang="fr" lang="fr">FR</a>
+        <button id="theme-toggle" class="icon-btn" type="button" aria-pressed="false">Light mode</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero container" aria-labelledby="title">
+      <div class="hero-text">
+        <p class="eyebrow">Senior QA Engineer &amp; Test Automation Expert</p>
+        <h1 id="title">Craftsman of Quality.</h1>
+        <p class="lead">20 years in web and mobile QA, 10 years leading teams. Test automation and AI to make your releases safer.</p>
+        <a class="cta" href="#contact">Let's discuss your project</a>
+      </div>
+      <div class="terminal">
+        <p class="terminal-cmd"><span class="prompt">$</span> npx playwright test --project=by-qa</p>
+        <p class="terminal-ok">✓ all tests passed</p>
+      </div>
+    </section>
+
+    <section id="expertise" class="container section" aria-labelledby="expertise-title">
+      <h2 id="expertise-title">Expertise</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>QA strategy and audits</h3>
+          <p>Needs audit, test strategy definition, procedures tailored to each context and quality indicators to measure the value delivered.</p>
+        </article>
+        <article class="card">
+          <h3>Web and mobile test automation</h3>
+          <p>Frameworks and regression suites with Playwright, Cypress, Selenium, Appium and Cucumber, documented and handed over to the teams.</p>
+        </article>
+        <article class="card">
+          <h3>CI/CD</h3>
+          <p>Tests wired into your pipelines: GitHub Actions, Bitrise, Jenkins, AWS Device Farm, BrowserStack.</p>
+        </article>
+        <article class="card">
+          <h3>Agile coaching</h3>
+          <p>Support for teams in Scrum, SAFe and Kanban, so that quality becomes everyone's business.</p>
+        </article>
+        <article class="card">
+          <h3>Training and team leadership</h3>
+          <p>Upskilling on testing tools and leading QA teams of 2 to 5 people.</p>
+        </article>
+        <article class="card">
+          <h3>AI applied to testing</h3>
+          <p>Driving a browser in natural language with Claude and Playwright, then turning that exploration into test code you can replay in CI.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="method" class="container section" aria-labelledby="method-title">
+      <h2 id="method-title">Method</h2>
+      <ol class="steps">
+        <li><strong>Understand.</strong> Audit of your needs and delivery context.</li>
+        <li><strong>Define.</strong> Test strategy and procedures fitted to your organisation.</li>
+        <li><strong>Structure.</strong> Test repositories in the tools you use (TestRail, Xray, qTest, Cucumber Studio).</li>
+        <li><strong>Automate.</strong> Web and mobile tests, plugged into CI/CD.</li>
+        <li><strong>Measure.</strong> Quality indicators to track the impact of each action.</li>
+        <li><strong>Hand over.</strong> Documentation and training so the teams stay autonomous.</li>
+      </ol>
+    </section>
+
+    <section id="clients" class="container section" aria-labelledby="clients-title">
+      <h2 id="clients-title">References</h2>
+      <p>A few of the organisations I have worked for.</p>
+
+      <div id="carousel" class="carousel" role="region" aria-label="Main references">
+        <ul class="carousel-track">
+          <li><img class="logo-chip" src="../assets/logos/bnp-paribas.svg" alt="BNP Paribas" height="32"></li>
+          <li><img src="../assets/logos/engie.svg" alt="Engie" height="32"></li>
+          <li>L'Équipe</li>
+          <li><img src="../assets/logos/bouygues-telecom.svg" alt="Bouygues Telecom" height="32"></li>
+          <li><img src="../assets/logos/accor.svg" alt="Accor" height="32"></li>
+          <li><img src="../assets/logos/gopro.svg" alt="GoPro" height="32"></li>
+          <li><img class="logo-chip" src="../assets/logos/fdj.svg" alt="La Française des Jeux" height="32"></li>
+          <li><img src="../assets/logos/renault-digital.svg" alt="Renault Digital" height="32"></li>
+          <li aria-hidden="true"><img class="logo-chip" src="../assets/logos/bnp-paribas.svg" alt="" height="32"></li>
+          <li aria-hidden="true"><img src="../assets/logos/engie.svg" alt="" height="32"></li>
+          <li aria-hidden="true">L'Équipe</li>
+          <li aria-hidden="true"><img src="../assets/logos/bouygues-telecom.svg" alt="" height="32"></li>
+          <li aria-hidden="true"><img src="../assets/logos/accor.svg" alt="" height="32"></li>
+          <li aria-hidden="true"><img src="../assets/logos/gopro.svg" alt="" height="32"></li>
+          <li aria-hidden="true"><img class="logo-chip" src="../assets/logos/fdj.svg" alt="" height="32"></li>
+          <li aria-hidden="true"><img src="../assets/logos/renault-digital.svg" alt="" height="32"></li>
+        </ul>
+        <div class="carousel-controls">
+          <button id="carousel-pause" class="icon-btn" type="button" aria-pressed="false" data-label-pause="Pause" data-label-play="Play">Pause</button>
+        </div>
+      </div>
+
+      <ul id="clients-grid" class="logos">
+        <li><img class="logo-chip" src="../assets/logos/bnp-paribas.svg" alt="BNP Paribas" height="32"></li>
+        <li>Enedis</li>
+        <li>L'Équipe</li>
+        <li>Altice Media</li>
+        <li><img src="../assets/logos/engie.svg" alt="Engie" height="32"></li>
+        <li><img src="../assets/logos/bouygues-telecom.svg" alt="Bouygues Telecom" height="32"></li>
+        <li><img src="../assets/logos/gopro.svg" alt="GoPro" height="32"></li>
+        <li><img src="../assets/logos/playplay.svg" alt="PlayPlay" height="32"></li>
+        <li><img class="logo-white" src="../assets/logos/grtgaz-natran-white.svg" alt="GRTgaz (Natran)" height="32"></li>
+        <li><img src="../assets/logos/accor.svg" alt="Accor" height="32"></li>
+        <li>Kosc Telecom</li>
+        <li><img class="logo-chip" src="../assets/logos/fdj.svg" alt="La Française des Jeux" height="32"></li>
+        <li><img src="../assets/logos/renault-digital.svg" alt="Renault Digital" height="32"></li>
+        <li><img src="../assets/logos/dxo-labs.svg" alt="DxO Labs" height="32"></li>
+        <li><img src="../assets/logos/pierre-et-vacances.svg" alt="Pierre &amp; Vacances" height="32"></li>
+        <li><img src="../assets/logos/france-medias-monde.svg" alt="France Médias Monde" height="32"></li>
+        <li>Thomas Cook</li>
+        <li><img src="../assets/logos/purse.webp" alt="ReachFive (acquired by Purse)" height="32"><span class="note">ReachFive, acquired by Purse</span></li>
+      </ul>
+    </section>
+
+    <section id="journey" class="container section" aria-labelledby="journey-title">
+      <h2 id="journey-title">Journey</h2>
+      <p>My career started in telecoms and mobile: Android, iOS, Symbian, Windows Mobile and real-time systems, with GSM, UMTS, TCP/IP, Wi-Fi and Bluetooth networks. That is where I learned to test products where the field does not forgive mistakes.</p>
+      <p>Freelance with BY-QA since April 2016, I have worked as QA Lead, QA Manager, test automation engineer and quality coach, on web and mobile, in Agile environments. I have led teams of 2 to 5 people and trained teams on tools and on a quality mindset.</p>
+    </section>
+
+    <section id="contact" class="container section" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <p>Got a project or a question? Write to me with this form, or find me on <a href="https://www.linkedin.com/in/ybrault/" rel="noopener">LinkedIn</a>.</p>
+      <p class="notice no-js-only">The form requires JavaScript. Write to me on <a href="https://www.linkedin.com/in/ybrault/" rel="noopener">LinkedIn</a>.</p>
+      <form id="contact-form" class="form" novalidate data-msg-sending="Sending…" data-msg-ok="Thank you, your message is on its way. I will reply soon." data-msg-error="Your message could not be sent. Please try again or write to me on LinkedIn.">
+        <input type="hidden" name="access_key" value="WEB3FORMS_PUBLIC_KEY">
+        <input type="hidden" name="subject" value="Contact from by-qa.com">
+        <input type="hidden" name="from_name" value="by-qa.com">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label>Name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>Message
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit" class="cta">Send</button>
+        <p id="contact-status" class="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

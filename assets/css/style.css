@@ -181,3 +181,6 @@ h3 { font-size: 1.05rem; }
 .notice { color: var(--fg); }
 .js .no-js-only { display: none; }
 html:not(.js) #contact-form { display: none; }
+
+.lang-link { color: var(--fg); text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: .35rem .7rem; font-size: .875rem; font-weight: 600; }
+.lang-link:hover { border-color: var(--accent); }

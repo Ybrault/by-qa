@@ -29,13 +29,13 @@ async function submitContact(form) {
     if (!form.reportValidity()) return;
     sending = true;
     button.disabled = true;
-    status.textContent = 'Envoi en cours…';
+    status.textContent = form.dataset.msgSending;
     var result = await submitContact(form);
     if (result.ok) {
       form.reset();
-      status.textContent = 'Merci, votre message est bien parti. Je vous réponds rapidement.';
+      status.textContent = form.dataset.msgOk;
     } else {
-      status.textContent = "Le message n'a pas pu être envoyé. Réessayez ou écrivez-moi sur LinkedIn.";
+      status.textContent = form.dataset.msgError;
     }
     sending = false;
     button.disabled = false;
