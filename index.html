@@ -22,11 +22,80 @@
   <header class="site-header">
     <nav class="container nav" aria-label="Navigation principale">
       <a class="brand" href="/">by-qa<span class="cursor">_</span></a>
-      <button id="theme-toggle" class="icon-btn" type="button" aria-pressed="false">Mode clair</button>
+      <ul class="nav-links">
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#methode">Méthode</a></li>
+        <li><a href="#clients">Références</a></li>
+        <li><a href="#parcours">Parcours</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-tools">
+        <button id="theme-toggle" class="icon-btn" type="button" aria-pressed="false">Mode clair</button>
+      </div>
     </nav>
   </header>
-  <main id="main" class="container">
-    <h1>Craftsman of Quality.</h1>
+
+  <main id="main">
+    <section class="hero container" aria-labelledby="titre">
+      <div class="hero-text">
+        <p class="eyebrow">Senior QA Engineer &amp; Test Automation Expert</p>
+        <h1 id="titre">Craftsman of Quality.</h1>
+        <p class="lead">20 ans de QA web et mobile, 10 ans d'encadrement d'équipes. Automatisation et IA au service de vos livraisons.</p>
+        <a class="cta" href="#contact">Discutons de votre projet</a>
+      </div>
+      <div class="terminal" aria-hidden="false">
+        <p class="terminal-cmd"><span class="prompt">$</span> npx playwright test --project=by-qa</p>
+        <p class="terminal-ok">✓ all tests passed</p>
+      </div>
+    </section>
+
+    <section id="expertise" class="container section" aria-labelledby="expertise-titre">
+      <h2 id="expertise-titre">Expertise</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Stratégie QA et audits</h3>
+          <p>Audit des besoins, définition de la stratégie de test, procédures adaptées à chaque contexte et indicateurs qualité pour mesurer la valeur livrée.</p>
+        </article>
+        <article class="card">
+          <h3>Automatisation web et mobile</h3>
+          <p>Frameworks et suites de non-régression avec Playwright, Cypress, Selenium, Appium et Cucumber, documentés et transmis aux équipes.</p>
+        </article>
+        <article class="card">
+          <h3>CI/CD</h3>
+          <p>Intégration des tests dans vos pipelines : GitHub Actions, Bitrise, Jenkins, AWS Device Farm, BrowserStack.</p>
+        </article>
+        <article class="card">
+          <h3>Coaching Agile</h3>
+          <p>Accompagnement des équipes en Scrum, SAFe et Kanban, pour que la qualité devienne l'affaire de tous.</p>
+        </article>
+        <article class="card">
+          <h3>Formation et encadrement</h3>
+          <p>Montée en compétence sur les outils de test et animation d'équipes QA de 2 à 5 personnes.</p>
+        </article>
+        <article class="card">
+          <h3>IA appliquée au test</h3>
+          <p>Piloter un navigateur en langage naturel avec Claude et Playwright, puis transformer l'exploration en code de test rejouable en CI.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="methode" class="container section" aria-labelledby="methode-titre">
+      <h2 id="methode-titre">Méthode</h2>
+      <ol class="steps">
+        <li><strong>Comprendre.</strong> Audit des besoins et du contexte de livraison.</li>
+        <li><strong>Définir.</strong> Stratégie de test et procédures adaptées à votre organisation.</li>
+        <li><strong>Structurer.</strong> Référentiels de tests dans les outils de votre choix (TestRail, Xray, qTest, Cucumber Studio).</li>
+        <li><strong>Automatiser.</strong> Tests web et mobile, branchés sur la CI/CD.</li>
+        <li><strong>Mesurer.</strong> Indicateurs qualité pour suivre l'impact des actions.</li>
+        <li><strong>Transmettre.</strong> Documentation et formation pour que les équipes restent autonomes.</li>
+      </ol>
+    </section>
+
+    <section id="parcours" class="container section" aria-labelledby="parcours-titre">
+      <h2 id="parcours-titre">Parcours</h2>
+      <p>Mon parcours a commencé dans les télécoms et le mobile : Android, iOS, Symbian, Windows Mobile et systèmes temps réel, avec les réseaux GSM, UMTS, TCP/IP, Wi-Fi et Bluetooth. J'y ai appris à tester des produits où le terrain ne pardonne pas.</p>
+      <p>Freelance avec BY-QA depuis avril 2016, j'ai exercé comme QA Lead, QA Manager, ingénieur en automatisation et coach qualité, en web comme en mobile, en environnement Agile. J'ai encadré des équipes de 2 à 5 personnes et formé les équipes aux outils et à l'état d'esprit qualité.</p>
+    </section>
   </main>
 </body>
 </html>

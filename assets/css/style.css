@@ -78,3 +78,58 @@ a { color: var(--accent); }
   cursor: pointer;
 }
 .js .icon-btn { display: inline-flex; }
+
+.nav-links { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; }
+.nav-links a:hover, .nav-links a:focus-visible { color: var(--fg); }
+.nav-tools { display: flex; gap: .5rem; align-items: center; }
+
+h1, h2, h3 { line-height: 1.15; margin: 0 0 .75rem; }
+h1 { font-size: clamp(2.25rem, 6vw, 3.75rem); letter-spacing: -.02em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h3 { font-size: 1.05rem; }
+
+.section { padding-block: 3.5rem; border-top: 1px solid var(--border); }
+.section p { max-width: 46rem; color: var(--muted); }
+
+.hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 2.5rem; align-items: center; padding-block: 4.5rem; }
+.eyebrow { font-family: var(--mono); font-size: .8rem; color: var(--accent); margin: 0 0 1rem; }
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 34rem; margin: 0 0 1.75rem; }
+
+.cta {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+  padding: .75rem 1.25rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.cta:hover { filter: brightness(1.1); }
+
+.terminal {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  font-family: var(--mono);
+  font-size: .9rem;
+  overflow-wrap: anywhere;
+}
+.terminal p { margin: 0 0 .6rem; }
+.terminal p:last-child { margin: 0; }
+.terminal .prompt, .terminal-ok { color: var(--accent); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; }
+.card p { margin: 0; font-size: .95rem; }
+
+.steps { padding-left: 1.25rem; max-width: 46rem; color: var(--muted); }
+.steps li { margin-bottom: .6rem; }
+.steps strong { color: var(--fg); }
+
+@media (max-width: 720px) {
+  .hero { grid-template-columns: 1fr; padding-block: 2.5rem; }
+  .nav { flex-wrap: wrap; }
+  .nav-links { order: 3; width: 100%; flex-wrap: wrap; gap: .75rem 1rem; }
+}
