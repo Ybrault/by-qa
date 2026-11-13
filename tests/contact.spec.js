@@ -86,3 +86,11 @@ test("aucune adresse e-mail dans la page ni dans les scripts", async ({ request 
     expect(await res.text(), path).not.toMatch(emailPattern);
   }
 });
+
+test('la clé Web3Forms est renseignée dans les deux pages', async ({ page }) => {
+  for (const path of ['/', '/en/']) {
+    await page.goto(path);
+    const key = await page.locator('#contact-form input[name="access_key"]').getAttribute('value');
+    expect(key, path).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
+  }
+});
