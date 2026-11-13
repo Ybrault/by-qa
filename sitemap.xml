@@ -10,4 +10,14 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://by-qa.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://by-qa.com/en/"/>
   </url>
+  <url>
+    <loc>https://by-qa.com/mentions-legales.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://by-qa.com/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://by-qa.com/en/legal-notice.html"/>
+  </url>
+  <url>
+    <loc>https://by-qa.com/en/legal-notice.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://by-qa.com/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://by-qa.com/en/legal-notice.html"/>
+  </url>
 </urlset>
